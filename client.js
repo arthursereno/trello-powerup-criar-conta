@@ -1,16 +1,20 @@
-let cooldown = false;
+// Variável global que persiste entre cliques
+window.cooldown = false;
 
 window.TrelloPowerUp.initialize({
   'board-buttons': function(t, options) {
     return [{
       text: '➕ Criar Conta CA',
       callback: function(t) {
-        if (cooldown) {
+        if (window.cooldown) {
           return t.alert({ message: '⏳ Processando...' });
         }
 
-        cooldown = true; // ativa o "bloqueio"
-        setTimeout(() => { cooldown = false; }, 3000); // libera após 3 segundos
+        // Ativa cooldown
+        window.cooldown = true;
+        setTimeout(() => {
+          window.cooldown = false;
+        }, 3000);
 
         return t.board('id')
           .then(function(board) {
@@ -18,8 +22,8 @@ window.TrelloPowerUp.initialize({
             return fetch(webhookUrl, {
               method: 'GET'
             })
-            .then(() => t.alert({ message: '✅ Nova conta criada com sucesso!' }))
-            .catch(() => t.alert({ message: '❌ Erro ao criar conta.' }));
+            .then(() => t.alert({ message: '✅ Nova conta criada!' }))
+            .catch(() => t.alert({ message: '❌ Erro ao criar a conta.' }));
           });
       }
     }];
