@@ -4,7 +4,7 @@ window.cooldown = false;
 window.TrelloPowerUp.initialize({
   'board-buttons': function(t, options) {
     return [{
-      text: '➕ Criar Conta CA',
+      text: '➕ CA',
       callback: function(t) {
         if (window.cooldown) {
           return t.alert({ message: '⏳ Processando...' });
