@@ -4,6 +4,7 @@ window.cooldown = false;
 window.TrelloPowerUp.initialize({
   'board-buttons': function(t, options) {
     return [{
+      icon: 'https://cdn-icons-png.flaticon.com/512/1828/1828817.png',
       text: '➕ CA',
       callback: function(t) {
         if (window.cooldown) {
